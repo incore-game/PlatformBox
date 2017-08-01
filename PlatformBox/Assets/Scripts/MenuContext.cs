@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MenuContext : MonoBehaviour
 {
     public GameObject page_main;
     public GameObject page_list;
+
+    public Image Wellpap;
+    public List<Sprite> Wellpaps;
 
     [Space]
     public int page;
@@ -30,7 +34,6 @@ public class MenuContext : MonoBehaviour
     {
         public List<LevelData> levels;
     }
-
     public List<LevelData> levels;
 
     public List<GruopData> gruops;
@@ -47,7 +50,7 @@ public class MenuContext : MonoBehaviour
             });
         });
 
-        
+
         int i = 1;
 
         foreach (LevelData lvl in levels)
@@ -75,6 +78,14 @@ public class MenuContext : MonoBehaviour
         if (page < 1) page = 1;
         int start = (page - 1) * 3;
 
+        if (page <= Wellpaps.Count)
+        {
+            Wellpap.sprite = Wellpaps[page - 1];
+        }
+        else
+        {
+            Debug.LogWarningFormat("Для страницы {0} не задан фон", page);
+        }
         int count = objs.Count;
         for (int f = 0; f < count; f++)
         {
@@ -133,11 +144,11 @@ public class MenuContext : MonoBehaviour
         page++;
         Print();
     }
-    
+
     public void Back()
     {
         page--;
-        if(page==0)
+        if (page == 0)
         {
             page_main.SetActive(true);
             page_list.SetActive(false);
