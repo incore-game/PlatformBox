@@ -78,18 +78,21 @@ public class Delet : MonoBehaviour
             if (shooting_script.CurAmmoCount >= z2)
             {
                 var old = PlayerPrefs.GetInt("LevelRecord_" + mapid, -1);
-                if (old < 2)
-                    PlayerPrefs.SetInt("LevelRecord_" + mapid, 2);
+                if (old <2)
+                PlayerPrefs.SetInt("LevelRecord_" + mapid, 2);
                 Zvezda1.SetActive(true);
                 Zvezda2.SetActive(true);
+                Zvezda3.SetActive(false);
 
             }else
             if (shooting_script.CurAmmoCount >= z3)
             {
                 var old = PlayerPrefs.GetInt("LevelRecord_" + mapid, -1);
-                if (old < 1)
+                if (old <1)
                     PlayerPrefs.SetInt("LevelRecord_" + mapid, 1);
                 Zvezda1.SetActive(true);
+                Zvezda2.SetActive(false);
+                Zvezda3.SetActive(false);
             }
         }
     }
